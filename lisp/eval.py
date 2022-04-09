@@ -1,7 +1,8 @@
 from lisp.types import Number, Symbol
 from lisp.environment import Env
 
-class Func():
+
+class Func:
     def __init__(self, params, body, env):
         self.params = params
         self.body = body
@@ -11,7 +12,9 @@ class Func():
         return evaluate(self.body, Env(self.params, args, self.env))
 
 def evaluate(expr, env):
-    if isinstance(expr, Symbol):
+    if type(expr) is str:
+        return expr[1:][:-1]
+    elif isinstance(expr, Symbol):
         return env.findEnv(expr)[expr]
     elif isinstance(expr, Number) or type(expr) is str:
         return expr

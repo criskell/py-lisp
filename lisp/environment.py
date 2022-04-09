@@ -9,7 +9,12 @@ class Env(dict):
         self.outerEnv = outerEnv
 
     def findEnv(self, name):
-        return self if (name in self) else self.outerEnv.findEnv(name)
+        if name in self:
+            return self
+        elif self.outerEnv:
+            return self.outerEnv.findEnv(name)
+        else:
+            raise NameError(f"Nome '{name}' não encontrado.")
 
 
 def createStandardEnv():
