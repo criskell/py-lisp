@@ -13,5 +13,5 @@
           (if (== n 0)
             1
             (* n (f (- n 1))))))))
- (print (+ '20! =' (str (fac 20))))
+ (print (+ 'Fatorial de 20 é igual a ' (+ (str (fac 20)) '...')))
 )
