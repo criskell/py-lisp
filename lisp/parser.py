@@ -1,22 +1,10 @@
-"""
-O processo de parsing significa obter uma representação interna do interpretador
-de um código fonte.
-
-É divido em:
-1. Analise léxica: Dado um código-fonte, separamos o código em tokens.
-2. Analise sintática: Transforma a sequência de tokens numa AST.
-"""
-
 from lisp.types import Symbol
 
 def parse(source):
     return parseTokens(tokenize(source))
 
 def tokenize(source):
-    """
-    Converte uma string em uma sequência de tokens.
-    """
-    return source.replace('(', ' ( ').replace(')', ' ) ').split()
+    return source.replace('(', ' ( ').replace(')', ' ) ').replace("'", " ' ").split()
 
 def readAtom(token):
     try:
@@ -28,14 +16,9 @@ def readAtom(token):
             return Symbol(token)
 
 def parseTokens(tokens):
-    """
-    Ler uma expressão a partir de uma sequência de tokens.
-    """
     if len(tokens) == 0:
         raise SyntaxError('Fim do arquivo')
-    
     token = tokens.pop(0)
-
     if token == ")":
         raise SyntaxError("Token ')' não esperado")
     elif token == "(":
@@ -44,5 +27,17 @@ def parseTokens(tokens):
             l.append(parseTokens(tokens))
         tokens.pop(0)
         return l
+    elif token == "'":
+        string = ""
+        first = True
+        while tokens[0] != "'":
+            if first:
+                sep = ''
+                first = False
+            else:
+                sep = ' '
+            string += sep + tokens.pop(0)
+        tokens.pop(0)
+        return string
     else:
         return readAtom(token)

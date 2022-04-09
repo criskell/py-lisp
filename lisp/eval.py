@@ -13,15 +13,15 @@ class Func():
 def evaluate(expr, env):
     if isinstance(expr, Symbol):
         return env.findEnv(expr)[expr]
-    elif isinstance(expr, Number):
+    elif isinstance(expr, Number) or type(expr) is str:
         return expr
     
     op, *args = expr
 
     if op == 'if':
         test, conseq, alternative = args
-        return evaluate(conseq if evaluate(test, env) else alternative)
-    elif op == 'define':
+        return evaluate(conseq if evaluate(test, env) else alternative, env)
+    elif op == '=':
         symbol, expression = args
         env[symbol] = evaluate(expression, env)
         return

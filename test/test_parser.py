@@ -26,6 +26,7 @@ class TestParser(TestCase):
         self.assertEqual(parseTokens(['0']), 0)
         self.assertEqual(parseTokens(['0.5']), 0.5)
         self.assertEqual(parseTokens(['x']), 'x')
+        self.assertEqual(parseTokens(tokenize("'este projeto eh muito simplessss'")), 'este projeto eh muito simplessss')
 
 if __name__ == '__main__':
     main()

@@ -24,10 +24,13 @@ def createStandardEnv():
         '<': op.lt,
         '>=': op.ge,
         '<=': op.le,
-        '=': op.eq,
+        '==': op.eq,
+        'int': int,
+        'float': float,
+        'str': str,
         'print': print,
         'sqrt': math.sqrt,
-        'begin': lambda *x: x[-1],
+        '>>>': lambda *x: x[-1],
     })
 
     return env
