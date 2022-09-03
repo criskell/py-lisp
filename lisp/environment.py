@@ -34,7 +34,9 @@ def createStandardEnv():
         'float': float,
         'str': str,
         'print': print,
+        'input': input,
         'sqrt': math.sqrt,
+        '**': math.pow,
         '>>>': lambda *x: x[-1],
     })
 

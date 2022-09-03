@@ -1,0 +1,10 @@
+(>>>
+ (= a (int (input 'Digite o valor A: ')))
+ (= b (int (input 'Digite o valor B: ')))
+ (= c (int (input 'Digite o valor C: ')))
+ (= delta (- (** b 2) (* (* 4 a) c)))
+ (= x1 (/ (+ (- 0 b) (sqrt delta)) (* 2 a)))
+ (= x2 (/ (- (- 0 b) (sqrt delta)) (* 2 a)))
+ (print (+ 'O valor de X1 é ' (str x1)))
+ (print (+ 'O valor de X2 é ' (str x2)))
+)
